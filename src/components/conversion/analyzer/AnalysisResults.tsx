@@ -1,8 +1,10 @@
 
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { Progress } from "@/components/ui/progress";
 import { ArrowRight } from "lucide-react";
 import CodePreview from "@/components/CodePreview";
+import { FileStats } from "./FileStats";
 
 interface AnalysisStats {
   totalFiles: number;
@@ -26,12 +28,13 @@ export function AnalysisResults({ stats, filePreview, onContinue }: AnalysisResu
       transition={{ duration: 0.5 }}
     >
       <h3 className="text-lg font-semibold mb-4">Analysis Results</h3>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-2">
-        <StatCard label="Total Files" value={stats.totalFiles} />
-        <StatCard label="Next.js Components" value={stats.nextComponents} />
-        <StatCard label="API Routes" value={stats.apiRoutes} />
-        <StatCard label="Data Fetching" value={stats.dataFetching} />
-      </div>
+      
+      <FileStats
+        totalFiles={stats.totalFiles}
+        nextComponents={stats.nextComponents}
+        apiRoutes={stats.apiRoutes}
+        dataFetching={stats.dataFetching}
+      />
       
       <div className="mt-6">
         <h3 className="text-sm font-medium mb-2">Complexity Score</h3>
@@ -62,11 +65,3 @@ export function AnalysisResults({ stats, filePreview, onContinue }: AnalysisResu
   );
 }
 
-function StatCard({ label, value }: { label: string; value: number }) {
-  return (
-    <div className="bg-card p-4 rounded-lg border border-border shadow-sm">
-      <div className="text-sm text-muted-foreground">{label}</div>
-      <div className="text-2xl font-semibold">{value}</div>
-    </div>
-  );
-}
