@@ -1,7 +1,7 @@
 import { SelectedFiles } from "./SelectedFiles";
 import { ProjectAnalyzer } from "./ProjectAnalyzer";
 import { RouteAnalyzer } from "./RouteAnalyzer";
-import { ConversionDashboard } from "@/components/ConversionDashboard";
+import ConversionDashboard from "@/components/ConversionDashboard";
 import { ConversionStepper } from "./ConversionStepper";
 
 interface ConversionSectionProps {

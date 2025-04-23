@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { FileUploader } from "./FileUploader";
-import { CodePreview } from "./CodePreview";
+import CodePreview from "@/components/CodePreview";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -28,18 +28,15 @@ export function ProjectAnalyzer({ files = [], onFilesProcessed }: ProjectAnalyze
   const [filePreview, setFilePreview] = useState<{name: string, content: string} | null>(null);
   const [analysisComplete, setAnalysisComplete] = useState(false);
 
-  // Use either the provided files prop or the internally selected files
   const filesToProcess = files.length > 0 ? files : selectedFiles;
 
   useEffect(() => {
-    // Automatically start analysis when files are provided from props
     if (files.length > 0 && !isAnalyzing && progress === 0) {
       setIsAnalyzing(true);
     }
   }, [files, isAnalyzing, progress]);
 
   useEffect(() => {
-    // Simulate analysis when isAnalyzing is true
     if (!isAnalyzing || !filesToProcess.length) return;
     
     const totalFiles = filesToProcess.length;
@@ -47,7 +44,6 @@ export function ProjectAnalyzer({ files = [], onFilesProcessed }: ProjectAnalyze
     
     const analyzeNextFile = () => {
       if (processed >= totalFiles) {
-        // Analysis complete
         setTimeout(() => {
           const complexity = Math.min(100, Math.floor(Math.random() * 70) + 30);
           
@@ -70,7 +66,6 @@ export function ProjectAnalyzer({ files = [], onFilesProcessed }: ProjectAnalyze
       const file = filesToProcess[processed];
       setCurrentFile(file.name);
       
-      // Try to set a preview file if we find a good candidate
       if (!filePreview && 
         (file.name.endsWith('.tsx') || file.name.endsWith('.jsx') || 
         file.name.includes('page') || file.name.includes('component'))) {
@@ -86,7 +81,6 @@ export function ProjectAnalyzer({ files = [], onFilesProcessed }: ProjectAnalyze
       const newProgress = Math.floor((processed / totalFiles) * 100);
       setProgress(newProgress);
       
-      // Process next file with a delay to show progress
       setTimeout(analyzeNextFile, 100);
     };
     
@@ -131,7 +125,6 @@ export function ProjectAnalyzer({ files = [], onFilesProcessed }: ProjectAnalyze
         <CardDescription>Upload your project files to analyze conversion complexity</CardDescription>
       </CardHeader>
       <CardContent>
-        {/* Show file upload UI if no files are provided */}
         {filesToProcess.length === 0 ? (
           <FileUploader onFilesSelected={handleFileChange} isAnalyzing={isAnalyzing} />
         ) : (

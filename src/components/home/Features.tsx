@@ -7,7 +7,7 @@ import {
   Server, 
   Workflow, 
   ArrowUpRight,
-  Components 
+  Component 
 } from "lucide-react";
 
 const features = [
@@ -27,7 +27,7 @@ const features = [
     description: "Convert API routes to Express or standalone server solutions with implementation guidance and automatic setup."
   },
   {
-    icon: <Components className="h-10 w-10 p-2 bg-amber-100 text-amber-700 rounded-lg" />,
+    icon: <Component className="h-10 w-10 p-2 bg-amber-100 text-amber-700 rounded-lg" />,
     title: "Component Replacement",
     description: "Replace Next.js-specific components like Image, Link, and Head with their Vite-compatible equivalents."
   },
