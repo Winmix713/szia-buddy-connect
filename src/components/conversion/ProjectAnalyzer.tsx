@@ -1,5 +1,6 @@
 
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { FileUploader } from "./FileUploader";
 import { AnalysisProgress } from "./analyzer/AnalysisProgress";
 import { AnalysisResults } from "./analyzer/AnalysisResults";
@@ -71,4 +72,3 @@ export function ProjectAnalyzer({ files = [], onFilesProcessed }: ProjectAnalyze
     </Card>
   );
 }
-
