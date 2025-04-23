@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Card, CardHeader, CardContent, CardTitle, CardDescription } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
@@ -184,3 +185,21 @@ export function RouteAnalyzer({ files, onRoutesAnalyzed }: RouteAnalyzerProps) {
 
                   <Alert className={
                     route.complexity > 4 ? "border-amber-200 bg-amber-50" : "border-green-200 bg-green-50"
+                  }>
+                    <AlertDescription className="font-mono text-sm">
+                      {getReactRouterEquivalent(route.path)}
+                    </AlertDescription>
+                  </Alert>
+                </motion.div>
+              ))}
+            </>
+          ) : (
+            <div className="text-center py-4 text-gray-500">
+              No routes detected yet. Upload your Next.js project to begin analysis.
+            </div>
+          )}
+        </div>
+      </CardContent>
+    </Card>
+  );
+}
